@@ -6,7 +6,7 @@ from fastapi.staticfiles import StaticFiles
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-#from src.database.db import get_db
+from src.database.db import get_db
 #from src.routes import auth, users
 
 app = FastAPI(title="FastBlog api",
@@ -45,8 +45,8 @@ def root():
     return {"message": "FastBlog Application"}
 
 
-#@app.get("/api/healthchecker")
-#async def healthchecker(db: AsyncSession = Depends(get_db)):
+@app.get("/api/healthchecker")
+async def healthchecker(db: AsyncSession = Depends(get_db)):
     """
     Check the health of the application and database connection.
 

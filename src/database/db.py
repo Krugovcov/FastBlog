@@ -1,7 +1,7 @@
 import contextlib
 from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, AsyncEngine, async_sessionmaker
-from FastBlog.src.config.config import config
+from src.config.config import config
 
 
 class DataBaseSessionManager:
