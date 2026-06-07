@@ -7,14 +7,14 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.db import get_db
-from src.routes import auth
+from src.routes import auth, post, users
 
 app = FastAPI(title="FastBlog api",
               version="1.0",
               description="RESTful API for a blog platform with authentication, posts, comments, likes, and user management, built with FastAPI and PostgreSQL.",
               )
 
-"""origins = ["*"]
+"""origins = ["*"] 
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,10 +31,10 @@ if not static_dir.exists():
 app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 
-app.include_router(users.router, prefix="/api")
 """
+app.include_router(users.router, prefix="/api")
 app.include_router(auth.router, prefix="/api")
-
+app.include_router(post.router, prefix="/api")
 @app.get("/") #home
 def root():
     """
