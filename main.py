@@ -7,7 +7,7 @@ from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.database.db import get_db
-from src.routes import auth, post, users
+from src.routes import auth, post, users, coments
 
 app = FastAPI(title="FastBlog api",
               version="1.0",
@@ -33,8 +33,10 @@ app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
 """
 app.include_router(users.router, prefix="/api")
+app.include_router(post.router, prefix="/api/posts")
 app.include_router(auth.router, prefix="/api")
-app.include_router(post.router, prefix="/api")
+
+app.include_router(coments.router, prefix="/api/comments")
 @app.get("/") #home
 def root():
     """
